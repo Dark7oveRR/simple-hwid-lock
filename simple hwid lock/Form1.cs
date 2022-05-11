@@ -8,7 +8,11 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+/*
+Changes:
+Changed from textBox1.Text to hwid-HWID CHECK
+Changed to 1.1.1.1-ONLINE CHECK
+*/
 namespace simple_hwid_lock
 {
     public partial class Form1 : Form
@@ -32,14 +36,14 @@ namespace simple_hwid_lock
         private void button1_Click(object sender, EventArgs e)
         {
             WebClient wb = new WebClient();
-            string HWIDLIST = wb.DownloadString("http://127.0.0.1/hwid.txt"); // hwid list where u saving hwid's
-            if (HWIDLIST.Contains(textBox1.Text))
+            string HWIDLIST = wb.DownloadString("http://127.0.0.1/hwid.txt"); // Your hwid list
+            if (HWIDLIST.Contains(hwid)) //Changed from textBox1.Text to hwid
             {
-                MessageBox.Show("Your hwid in list");
+                MessageBox.Show("Your hwid is in the list!");
             }
             else
             {
-                MessageBox.Show("hwid not found!");
+                MessageBox.Show("Your hwid isnt in the list!");
             }
         }
 
@@ -56,7 +60,7 @@ namespace simple_hwid_lock
             {
                 using (var client = new WebClient())
                 {
-                    using (client.OpenRead("http://127.0.0.1"))
+                    using (client.OpenRead("https://1.1.1.1")) //Changed to 1.1.1.1
                     {
                         label3.ForeColor = Color.Green;
                         label3.Text = ("Online");
